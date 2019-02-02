@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Ext SBC</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="std_id">รหัสนักศึกษา</string>
+    <string name="firstname">ชื่อ</string>
+    <string name="lastname">นามสกุล</string>
+    <string name="age">อายุ</string>
+    <string name="sex">เพศ</string>
+    <string name="male">ชาย</string>
+    <string name="female">หญิง</string>
+    <string name="address">ที่อยู่</string>
+    <string name="cl">ระดับชั้น</string>
+    <string name="faculty">คณะ</string>
+    <string name="branch">สาขา</string>
+    <string name="tel">เบอร์โทร</string>
+    <string name="confirm">ยืนยันการลงทะเบียน</string>
+    <string name="message">ประกาศข่าวสาร</string>
+    <string name="calendar">ปฏิทินกิจกรรม</string>
+    <string name="event">ลงทะเบียนเข้ากิจกรรม</string>
+    <string name="investigate">เช็คการเข้าร่วมกิจกรรม</string>
+
+
+    <string name="register">ลงทะเบียน</string>
+    <string name="message_have_space">กรุณากรอกให้ครบทุกช่อง</string>
+
+</resources>
