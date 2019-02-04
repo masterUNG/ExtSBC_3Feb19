@@ -16,7 +16,7 @@ import android.widget.TextView;
  * A simple {@link Fragment} subclass.
  */
 public class MainFragment extends Fragment {
-Button login ;
+
 
 
 

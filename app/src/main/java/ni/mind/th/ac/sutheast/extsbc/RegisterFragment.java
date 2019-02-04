@@ -38,13 +38,12 @@ public class RegisterFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-//        Create Toolber
-        createToolber();
+//        Create Toolbar
+        createToolbar();
 
 //        Level Controller
         levelController();
@@ -59,10 +58,11 @@ public class RegisterFragment extends Fragment {
         genderController();
 
 
+
     }   //Main Method
 
     private void createSection() {
-        final String[] strings = new String[]{"Section1", "Section2", "Section3", "Section่4",};
+        final String[] strings = new String[]{"---------------------------","สาขาวิชาการบัญชี", "สาขาวิชาการตลาด", "สาขาวิชาการจัดการ", "สาขาการจัดการการท่องเที่ยวและการโรงแรม","สาขานิติศาสตรบัณฑิต","สาขาวิชาการจัดการโลจิสติกส์","สาขาวิชาภาษาอังกฤษธุรกิจ","สาขาวิชาเทคโนโลยีสารสนเทศ","สาขาวิชาคอมพิวเตอร์ธุรกิจ","สาขาวิชาเทคโนโลยีการจัดการอุตสาหกรรม","สาขาวิชาเทคโนโลยีคอมพิวเตอร์","สาขาวิชาเทคโนโลยีมัลติมีเดียและแอนิเมชัน"};
         Spinner spinner = getView().findViewById(R.id.spnGroup);
         ArrayAdapter<String> stringArrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, strings);
         spinner.setAdapter(stringArrayAdapter);
@@ -81,7 +81,7 @@ public class RegisterFragment extends Fragment {
     }
 
     private void levelController() {
-        final String[] strings = new String[]{"ชั่นปีที่1", "ชั่นปีที่2", "ชั่นปีที่3", "ชั่นปีที่4",};
+        final String[] strings = new String[]{"---------------------------","ชั่นปีที่1", "ชั่นปีที่2", "ชั่นปีที่3", "ชั่นปีที่4",};
         Spinner spinner = getView().findViewById(R.id.spnLevel);
         ArrayAdapter<String> stringArrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, strings);
         spinner.setAdapter(stringArrayAdapter);
@@ -120,7 +120,7 @@ public class RegisterFragment extends Fragment {
 
     private void createDivision() {
 
-        final String[] strings = new String[]{"Division1", "Division2", "Division3", "Division4",};
+        final String[] strings = new String[]{"---------------------------","คณะบัญชีและวิทยาการจัดการ", "คณะนิติศาสตร์", "คณะโลจิสติกส์และเทคโนโลยีการบิน", "คณะศิลปศาสตร์","คณะวิทยาศาสตร์และเทคโนโลยี"};
         Spinner spinner = getView().findViewById(R.id.spnDivition);
         ArrayAdapter<String> stringArrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, strings);
         spinner.setAdapter(stringArrayAdapter);
@@ -140,7 +140,7 @@ public class RegisterFragment extends Fragment {
 
     }
 
-    private void createToolber() {
+    private void createToolbar() {
         Toolbar toolbar = getView().findViewById(R.id.toolbarRegister);
         ((MainActivity) getActivity()).setSupportActionBar(toolbar);
         ((MainActivity) getActivity()).getSupportActionBar().setTitle(getString(R.string.register));
