@@ -12,11 +12,11 @@
 
         <!--Toolbar-->
         <android.support.v7.widget.Toolbar
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             android:id="@+id/toolbarRegister"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimary" />
+            android:background="@color/colorPrimary"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
 
         <!--Content-->
@@ -25,11 +25,11 @@
             android:layout_height="match_parent">
 
             <LinearLayout
-                android:paddingBottom="50dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="30dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingBottom="50dp">
 
                 <!--id-->
                 <LinearLayout
@@ -51,11 +51,11 @@
                     <!--TextField-->
                     <EditText
                         android:id="@+id/edtID1"
-                        android:inputType="number"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:hint="xxx 12 digi xxx" />
+                        android:hint="xxx 12 digi xxx"
+                        android:inputType="number" />
 
 
                 </LinearLayout>
@@ -79,11 +79,11 @@
                     <!--TextField-->
                     <EditText
                         android:id="@+id/edtID2"
-                        android:inputType="number"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:hint="xxx 12 digi xxx" />
+                        android:hint="xxx 12 digi xxx"
+                        android:inputType="number" />
 
 
                 </LinearLayout>
@@ -107,11 +107,10 @@
                     <!--TextField-->
                     <EditText
                         android:id="@+id/edtPassword1"
-                        android:inputType="textPassword"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
-                         />
+                        android:inputType="textPassword" />
 
 
                 </LinearLayout>
@@ -135,11 +134,10 @@
                     <!--TextField-->
                     <EditText
                         android:id="@+id/edtPassword2"
-                        android:inputType="textPassword"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
-                         />
+                        android:inputType="textPassword" />
 
 
                 </LinearLayout>
@@ -163,11 +161,10 @@
                     <!--TextField-->
                     <EditText
                         android:id="@+id/edtName"
-                        android:inputType="text"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
-                         />
+                        android:inputType="text" />
 
 
                 </LinearLayout>
@@ -191,11 +188,10 @@
                     <!--TextField-->
                     <EditText
                         android:id="@+id/edtSurname"
-                        android:inputType="text"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
-                         />
+                        android:inputType="text" />
 
 
                 </LinearLayout>
@@ -219,11 +215,10 @@
                     <!--TextField-->
                     <EditText
                         android:id="@+id/edtAge"
-                        android:inputType="number"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
-                         />
+                        android:inputType="number" />
 
 
                 </LinearLayout>
@@ -260,6 +255,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="@string/male" />
+
                         <RadioButton
                             android:id="@+id/radFemail"
                             android:layout_width="0dp"
@@ -270,44 +266,41 @@
                     </RadioGroup>
 
 
-
-
                 </LinearLayout>
-
 
 
                 <!--Date Birth-->
                 <LinearLayout
-                    android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-
-                <!--Title-->
-                <TextView
-
-                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Date Birth"
-                    android:textSize="@dimen/h3"
-                    android:textStyle="bold" />
+                    android:orientation="horizontal">
+
+
+                    <!--Title-->
+                    <TextView
+
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Date Birth"
+                        android:textSize="@dimen/h3"
+                        android:textStyle="bold" />
 
                     <TextView
-                    android:id="@+id/txtDate"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="dd-mm-yyyy"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                        android:id="@+id/txtDate"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="dd-mm-yyyy"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
                     <Button
                         android:id="@+id/btnSet"
-                        android:text="Set"
-                        android:layout_weight="0.5"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:text="Set" />
 
                 </LinearLayout>
 
@@ -321,9 +314,9 @@
 
                     <!--Title-->
                     <TextView
-                        android:layout_gravity="start"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="start"
                         android:layout_weight="1"
                         android:text="@string/address"
                         android:textSize="@dimen/h3"
@@ -333,13 +326,12 @@
                     <!--TextField-->
                     <EditText
                         android:id="@+id/edtAddress"
-                        android:inputType="text"
-                        android:layout_gravity="top"
-                        android:lines="4"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="top"
                         android:layout_weight="2"
-                         />
+                        android:inputType="text"
+                        android:lines="4" />
 
 
                 </LinearLayout>
@@ -369,7 +361,9 @@
                         android:layout_weight="2" />
 
 
-                </LinearLayout><LinearLayout
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -394,6 +388,7 @@
 
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -439,14 +434,14 @@
                     <!--TextField-->
                     <EditText
                         android:id="@+id/edtEmail"
-                        android:inputType="textEmailAddress"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        />
+                        android:inputType="textEmailAddress" />
 
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -466,21 +461,18 @@
                     <!--TextField-->
                     <EditText
                         android:id="@+id/edtPhone"
-                        android:inputType="number"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        />
+                        android:inputType="number" />
 
 
                 </LinearLayout>
 
 
-
             </LinearLayout>
 
         </ScrollView>
-
 
 
     </LinearLayout>

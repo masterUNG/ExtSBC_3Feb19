@@ -26,5 +26,6 @@
 
     <string name="register">ลงทะเบียน</string>
     <string name="message_have_space">กรุณากรอกให้ครบทุกช่อง</string>
+    <string name="even">ประกาศข่าวสาร</string>
 
 </resources>
