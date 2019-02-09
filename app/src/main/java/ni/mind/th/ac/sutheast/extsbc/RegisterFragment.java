@@ -4,11 +4,13 @@ package ni.mind.th.ac.sutheast.extsbc;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -25,9 +27,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -38,7 +43,7 @@ import java.util.Calendar;
  */
 public class RegisterFragment extends Fragment {
 
-    private String genderString, dateString, levelString, divisionString, sectionString, email, pass;
+    private String genderString, dateString, levelString, divisionString, sectionString, email, pass, uidString;
     private boolean genderABoolean = true, dateBirthABoolean = true;
 
 
@@ -209,15 +214,15 @@ public class RegisterFragment extends Fragment {
             EditText emailEditText = getView().findViewById(R.id.edtEmail);
             EditText phoneEditText = getView().findViewById(R.id.edtPhone);
 
-            String id1 = id1EditText.getText().toString().trim();
+            final String id1 = id1EditText.getText().toString().trim();
             pass = passEditText.getText().toString().trim();
             String pass2 = pass2EditText.getText().toString().trim();
-            String name = nameEditText.getText().toString().trim();
-            String surname = surnameEditText.getText().toString().trim();
-            String age = ageEditText.getText().toString().trim();
-            String address = addressEditText.getText().toString().trim();
+            final String name = nameEditText.getText().toString().trim();
+            final String surname = surnameEditText.getText().toString().trim();
+            final String age = ageEditText.getText().toString().trim();
+            final String address = addressEditText.getText().toString().trim();
             email = emailEditText.getText().toString().trim();
-            String phone = phoneEditText.getText().toString().trim();
+            final String phone = phoneEditText.getText().toString().trim();
 
             if (id1.isEmpty() ||
                     pass.isEmpty() ||
@@ -252,17 +257,36 @@ public class RegisterFragment extends Fragment {
                         "Address = " + address + "\n" +
                         "Level = " + levelString + "\n" +
                         "Division = " + divisionString + "\n" +
-                        "Section = " + sectionString + "/n" +
+                        "Section = " + sectionString + "\n" +
                         "Email = " + email + "\n" +
                         "Password = " + pass + "\n" +
                         "Phone = " + phone).setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+                        final FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
                         firebaseAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
 //                            ToDo
+
+                                    uidString = firebaseAuth.getUid();
+                                    Log.d("9febV1", "uid ==> " + uidString);
+
+                                    DataModel dataModel = new DataModel(address, age, dateString,
+                                            divisionString, genderString, id1, levelString, name,
+                                            phone, sectionString, surname);
+
+                                    FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+                                    DatabaseReference databaseReference = firebaseDatabase.getReference().child("Student");
+                                    databaseReference.child(uidString).setValue(dataModel).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            startActivity(new Intent(getActivity(), ServiceActivity.class));
+                                            getActivity().finish();
+                                        }
+                                    });
+
+
                                 } else {
                                     showAlert("Cannont Resigter", task.getException().toString());
                                 }
