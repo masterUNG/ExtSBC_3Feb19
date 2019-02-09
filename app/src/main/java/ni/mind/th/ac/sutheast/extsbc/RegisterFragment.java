@@ -161,7 +161,6 @@ public class RegisterFragment extends Fragment {
         if (item.getItemId() == R.id.itemCloud) {
 
             EditText id1EditText = getView().findViewById(R.id.edtID1);
-            EditText id2EditText = getView().findViewById(R.id.edtID2);
             EditText passEditText = getView().findViewById(R.id.edtPassword1);
             EditText pass2EditText = getView().findViewById(R.id.edtPassword2);
             EditText nameEditText = getView().findViewById(R.id.edtName);
@@ -172,7 +171,6 @@ public class RegisterFragment extends Fragment {
             EditText phoneEditText = getView().findViewById(R.id.edtPhone);
 
             String id1 = id1EditText.getText().toString().trim();
-            String id2 = id2EditText.getText().toString().trim();
             String pass = passEditText.getText().toString().trim();
             String pass2 = pass2EditText.getText().toString().trim();
             String name = nameEditText.getText().toString().trim();
@@ -183,7 +181,6 @@ public class RegisterFragment extends Fragment {
             String phone = phoneEditText.getText().toString().trim();
 
             if (id1.isEmpty() ||
-                    id2.isEmpty() ||
                     pass.isEmpty() ||
                     pass2.isEmpty() ||
                     name.isEmpty() ||
@@ -193,7 +190,11 @@ public class RegisterFragment extends Fragment {
                     email.isEmpty() ||
                     phone.isEmpty()) {
 //                Have Space
-                showAlert("Have Space", "Please Fill All Blank");
+                showAlert(getString(R.string.title_have_space), getString(R.string.message_have_space));
+
+            } else if (id1.length() != 13) {
+//                รหัสไม่เท่า 13 หลัก
+                showAlert(getString(R.string.title_non13), getString(R.string.message_non13));
             } else if (genderABoolean) {
                 showAlert("Choose Gender ?", "Please Choose Gender Male or Female");
             } else if (!pass.equals(pass2)) {
