@@ -2,6 +2,7 @@ package ni.mind.th.ac.sutheast.extsbc;
 
 
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,22 +17,29 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 /**
  * A simple {@link Fragment} subclass.
  */
 public class RegisterFragment extends Fragment {
 
-    private String genderString, dateString, levelString, divisionString, sectionString;
-    private boolean genderABoolean = true;
+    private String genderString, dateString, levelString, divisionString, sectionString, email, pass;
+    private boolean genderABoolean = true, dateBirthABoolean = true;
 
 
     public RegisterFragment() {
@@ -58,8 +66,39 @@ public class RegisterFragment extends Fragment {
 //        Gender Controller
         genderController();
 
+//        Create SetDateBirth
+        createSetDateBirth();
 
     }   //Main Method
+
+    private void createSetDateBirth() {
+        Button button = getView().findViewById(R.id.btnSet);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dateBirthABoolean = false;
+
+                final Calendar calendar = Calendar.getInstance();
+                final int dayInt = calendar.get(Calendar.DAY_OF_MONTH);
+                int monthInt = calendar.get(Calendar.MONTH);
+                int yearInt = calendar.get(Calendar.YEAR);
+
+                DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(),
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                                calendar.set(year, month, dayInt);
+                                DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+                                dateString = dateFormat.format(calendar.getTime());
+                                TextView textView = getView().findViewById(R.id.txtDate);
+                                textView.setText(dateString);
+                            }
+                        }, yearInt, monthInt, dayInt);
+                datePickerDialog.show();
+
+            }
+        });
+    }
 
     private void createSection() {
         final String[] strings = new String[]{"Section1", "Section2", "Section3", "Section่4",};
@@ -171,13 +210,13 @@ public class RegisterFragment extends Fragment {
             EditText phoneEditText = getView().findViewById(R.id.edtPhone);
 
             String id1 = id1EditText.getText().toString().trim();
-            String pass = passEditText.getText().toString().trim();
+            pass = passEditText.getText().toString().trim();
             String pass2 = pass2EditText.getText().toString().trim();
             String name = nameEditText.getText().toString().trim();
             String surname = surnameEditText.getText().toString().trim();
             String age = ageEditText.getText().toString().trim();
             String address = addressEditText.getText().toString().trim();
-            String email = emailEditText.getText().toString().trim();
+            email = emailEditText.getText().toString().trim();
             String phone = phoneEditText.getText().toString().trim();
 
             if (id1.isEmpty() ||
@@ -200,21 +239,42 @@ public class RegisterFragment extends Fragment {
                 showAlert(getString(R.string.title_nonMatch), getString(R.string.message_noMatch));
             } else if (genderABoolean) {
                 showAlert("Choose Gender ?", "Please Choose Gender Male or Female");
-            } else if (!pass.equals(pass2)) {
-                showAlert("Password not Match", "Please Type Password and Re-Password Match");
+            } else if (dateBirthABoolean) {
+                showAlert("No Choose Date Birth", "Please Click SET on Date Birth");
             } else {
-                FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-                firebaseAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
+                alertDialogBuilder.setTitle("Confirm Data").setMessage("id = " + id1 + "\n" +
+                        "Name = " +  name + "\n" +
+                        "Surname = " + surname + "\n" +
+                        "Age = " + age + "\n" +
+                        "Gender = " + genderString + "\n" +
+                        "DateBirth = " + dateString + "\n" +
+                        "Address = " + address + "\n" +
+                        "Level = " + levelString + "\n" +
+                        "Division = " + divisionString + "\n" +
+                        "Section = " + sectionString + "/n" +
+                        "Email = " + email + "\n" +
+                        "Password = " + pass + "\n" +
+                        "Phone = " + phone).setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+                        firebaseAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
 //                            ToDo
-                        } else {
-                            showAlert("Cannont Resigter", task.getException().toString());
-                        }
+                                } else {
+                                    showAlert("Cannont Resigter", task.getException().toString());
+                                }
+                            }
+                        });
                     }
-                });
-            }
+                }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                }).show();
+            }   // if
 
         }
         return super.onOptionsItemSelected(item);
