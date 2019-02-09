@@ -36,12 +36,14 @@
 
 
             <Button
+                android:id="@+id/btnOne"
                 android:layout_marginRight="20dp"
                 android:text="@string/message"
                 android:layout_width="@dimen/my_btn"
                 android:layout_height="@dimen/my_btn"
                 android:layout_weight="4" />
             <Button
+                android:id="@+id/btnTwo"
                 android:text="@string/message"
                 android:layout_width="@dimen/my_btn"
                 android:layout_height="@dimen/my_btn"
@@ -61,6 +63,7 @@
 
 
             <Button
+                android:id="@+id/btnThree"
                 android:layout_marginRight="20dp"
                 android:text="@string/event"
                 android:layout_width="@dimen/my_btn"
@@ -69,6 +72,7 @@
 
 
             <Button
+                android:id="@+id/btnFour"
                 android:text="@string/investigate"
                 android:layout_width="@dimen/my_btn"
                 android:layout_height="@dimen/my_btn"

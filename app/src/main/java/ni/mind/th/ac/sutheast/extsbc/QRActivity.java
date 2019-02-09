@@ -3,23 +3,19 @@ package ni.mind.th.ac.sutheast.extsbc;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+public class QRActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_qr);
 
-//        Add Fradment to actvity
         if (savedInstanceState == null) {
-
             getSupportFragmentManager()
                     .beginTransaction()
-                    .add(R.id.contentMainFragment, new MainFragment())
+                    .add(R.id.contentQRfragment, new QrFragment())
                     .commit();
         }
 
-
-    }   //Main Method
-
-} //Main Class
+    }
+}
