@@ -195,6 +195,9 @@ public class RegisterFragment extends Fragment {
             } else if (id1.length() != 13) {
 //                รหัสไม่เท่า 13 หลัก
                 showAlert(getString(R.string.title_non13), getString(R.string.message_non13));
+            } else if (!pass.equals(pass2)) {
+//                    Password non Match
+                showAlert(getString(R.string.title_nonMatch), getString(R.string.message_noMatch));
             } else if (genderABoolean) {
                 showAlert("Choose Gender ?", "Please Choose Gender Male or Female");
             } else if (!pass.equals(pass2)) {

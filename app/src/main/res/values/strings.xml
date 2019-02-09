@@ -29,6 +29,8 @@
     <string name="message_have_space">กรุณากรอกให้ครบทุกช่อง</string>
     <string name="title_non13">ระหััสนักศึกษาผิด</string>
     <string name="message_non13">ระหัสนักษักษามี 13 หลักคะ</string>
+    <string name="title_nonMatch">Pass ผิด</string>
+    <string name="message_noMatch">Password ไม่เหมือนกัน คะ</string>
     <string name="password">Password</string>
 
 </resources>
