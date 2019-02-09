@@ -18,7 +18,15 @@ public class QrFragment extends Fragment implements ZXingScannerView.ResultHandl
 
     private ZXingScannerView zXingScannerView;
     private String qrString;
-    private boolean resultABoolean;
+    private boolean statusABoolean;
+
+    public static QrFragment qrInstance(boolean status) {
+        QrFragment qrFragment = new QrFragment();
+        Bundle bundle = new Bundle();
+        bundle.putBoolean("Status", status);
+        qrFragment.setArguments(bundle);
+        return qrFragment;
+    }
 
     @Nullable
     @Override
@@ -29,6 +37,8 @@ public class QrFragment extends Fragment implements ZXingScannerView.ResultHandl
         zXingScannerView = new ZXingScannerView(getActivity());
         return zXingScannerView;
     }
+
+
 
     @Override
     public void onResume() {
@@ -50,6 +60,14 @@ public class QrFragment extends Fragment implements ZXingScannerView.ResultHandl
         if (!qrString.isEmpty()) {
 //            qrString อ่านค่าได้
             Log.d("9febV1", "qrString ==> " + qrString);
+
+            statusABoolean = getArguments().getBoolean("Status");
+
+            getActivity().getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.contentQRfragment, ResultQRFragment.resultQRInstance(statusABoolean, qrString))
+                    .commit();
+
         }
 //        qrString ว่างเปล่า
 

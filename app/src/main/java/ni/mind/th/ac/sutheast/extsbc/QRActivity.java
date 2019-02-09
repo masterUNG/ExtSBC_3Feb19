@@ -13,7 +13,7 @@ public class QRActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .add(R.id.contentQRfragment, new QrFragment())
+                    .add(R.id.contentQRfragment, QrFragment.qrInstance(getIntent().getBooleanExtra("MyKey", true)))
                     .commit();
         }
 
